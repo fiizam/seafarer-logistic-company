@@ -1,0 +1,100 @@
+---
+import pkg from 'lucide-react';
+const { ArrowRight, Calendar } = pkg;
+
+const articles = [
+  {
+    title: "Seafarer Announces New Eco-Friendly Fleet Addition",
+    category: "Company News",
+    date: "August 1, 2026",
+    image: "/images/news-1.png"
+  },
+  {
+    title: "Navigating the New Trans-Pacific Trade Agreements",
+    category: "Industry Insights",
+    date: "July 24, 2026",
+    image: "/images/news-2.png"
+  },
+  {
+    title: "Q2 2026 Logistics Performance Report Released",
+    category: "Reports",
+    date: "July 15, 2026",
+    image: "/images/news-3.jpg"
+  }
+];
+---
+
+<section id="news" class="py-24 bg-white relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 news-header">
+      <div class="max-w-2xl">
+        <h4 class="text-electric font-semibold tracking-wider uppercase text-sm mb-3">Latest Updates</h4>
+        <h2 class="text-4xl lg:text-5xl font-bold text-navy-900 mb-6">
+          News & Insights
+        </h2>
+      </div>
+      <div>
+        <a href="#" class="inline-flex items-center gap-2 border border-slate-200 hover:border-electric text-navy-900 hover:text-electric px-6 py-3 rounded-full transition-colors font-medium">
+          Lihat Semua Berita
+        </a>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {articles.map((article) => (
+        <article class="news-card group cursor-pointer">
+          <div class="relative h-64 rounded-2xl overflow-hidden mb-6">
+            <img src={article.image} alt={article.title} class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-navy-900 uppercase tracking-wide shadow-sm">
+              {article.category}
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-2 text-slate-400 text-sm mb-3">
+            <Calendar class="w-4 h-4" />
+            <time>{article.date}</time>
+          </div>
+          
+          <h3 class="text-xl font-bold text-navy-900 mb-4 group-hover:text-electric transition-colors line-clamp-2">
+            {article.title}
+          </h3>
+          
+          <div class="inline-flex items-center gap-2 text-sm font-semibold text-electric group-hover:text-navy-900 transition-colors">
+            Baca Artikel <ArrowRight class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  
+  document.addEventListener('astro:page-load', () => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    gsap.fromTo('.news-header', 
+      { y: 30, opacity: 0 },
+      { 
+        y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '#news',
+          start: 'top 80%',
+        }
+      }
+    );
+
+    gsap.fromTo('.news-card',
+      { y: 50, opacity: 0 },
+      { 
+        y: 0, opacity: 1, duration: 0.6, stagger: 0.15, ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.news-card',
+          start: 'top 80%',
+        }
+      }
+    );
+  });
+</script>

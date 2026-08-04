@@ -1,0 +1,87 @@
+---
+import pkg from 'lucide-react';
+const { Ship, Plane, Truck, Package, ShieldCheck, Clock } = pkg;
+
+const services = [
+  {
+    title: "Angkutan Laut",
+    description: "Solusi FCL dan LCL hemat biaya dengan keberangkatan rutin di seluruh rute perdagangan utama dunia.",
+    icon: Ship,
+    features: ["Pelacakan Kontainer", "Layanan Pelabuhan ke Pelabuhan", "Izin Bea Cukai"]
+  },
+  {
+    title: "Angkutan Udara",
+    description: "Layanan udara ekspres dan reguler untuk pengiriman kargo sensitif waktu di seluruh dunia.",
+    icon: Plane,
+    features: ["Pengiriman Hari Berikutnya", "Asuransi Kargo", "Pengiriman Pintu ke Pintu"]
+  },
+  {
+    title: "Transportasi Darat",
+    description: "Jaringan jalan raya domestik dan lintas batas untuk melengkapi pengiriman laut dan udara Anda.",
+    icon: Truck,
+    features: ["LTL & FTL", "Pelacakan GPS", "Kargo Beku/Dingin"]
+  }
+];
+---
+
+<section id="services" class="py-24 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-20 service-header">
+      <h2 class="text-4xl md:text-5xl font-bold text-navy-900 mb-6">Layanan Inti Kami</h2>
+      <p class="text-lg text-slate-600">Solusi menyeluruh yang disesuaikan untuk memenuhi tuntutan rantai pasokan paling ketat di seluruh darat, laut, dan udara.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {services.map((service, index) => (
+        <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group service-card">
+          <div class="w-16 h-16 bg-electric/10 rounded-xl flex items-center justify-center text-electric mb-8 group-hover:scale-110 group-hover:bg-electric group-hover:text-white transition-all duration-300">
+            <service.icon class="w-8 h-8" />
+          </div>
+          <h3 class="text-2xl font-bold text-navy-900 mb-4">{service.title}</h3>
+          <p class="text-slate-600 mb-8 leading-relaxed">{service.description}</p>
+          <ul class="space-y-3">
+            {service.features.map(feature => (
+              <li class="flex items-center text-sm text-slate-700 font-medium">
+                <svg class="w-5 h-5 text-electric mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  
+  document.addEventListener('astro:page-load', () => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    gsap.fromTo('.service-header',
+      { y: 30, opacity: 0 },
+      { 
+        y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '#services',
+          start: 'top 85%',
+        }
+      }
+    );
+
+    gsap.fromTo('.service-card',
+      { y: 50, opacity: 0 },
+      { 
+        y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.service-card',
+          start: 'top 85%',
+        }
+      }
+    );
+  });
+</script>

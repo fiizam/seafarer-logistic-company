@@ -1,0 +1,82 @@
+---
+import pkg from 'lucide-react';
+const { CheckCircle2 } = pkg;
+---
+
+<section id="about" class="py-24 bg-white relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      
+      {/* Image Container */}
+        <div class="relative w-full aspect-square md:aspect-auto about-images">
+          <div class="absolute inset-0 bg-gradient-to-tr from-electric/20 to-transparent rounded-[2.5rem] transform translate-x-4 translate-y-4 -z-10"></div>
+          <img 
+            src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1000&auto=format&fit=crop" 
+            alt="Modern Logistics Warehouse" 
+            class="relative rounded-[2.5rem] w-full h-72 md:h-96 lg:h-[500px] object-cover shadow-soft z-10"
+          />
+          
+          <div class="absolute -bottom-6 -right-2 md:-bottom-10 md:-right-10 bg-white p-4 md:p-6 rounded-3xl shadow-soft border-2 border-slate-50 flex flex-col items-center justify-center min-w-[140px] md:min-w-[160px] z-20">
+            <span class="text-3xl md:text-4xl font-extrabold text-electric mb-1">25+</span>
+            <span class="text-xs md:text-sm font-bold text-navy-900 uppercase tracking-wider text-center">Tahun<br/>Pengalaman</span>
+          </div>
+        </div>
+
+      {/* Content */}
+      <div class="about-content">
+        <h4 class="text-electric font-semibold tracking-wider uppercase text-sm mb-3">Tentang Seafarer</h4>
+        <h2 class="text-4xl lg:text-5xl font-bold text-navy-900 mb-6 leading-tight">
+          Mendefinisikan ulang batas <br/> pengiriman global.
+        </h2>
+        <p class="text-slate-600 mb-8 text-lg text-balance">
+          Sejak tahun 1998, Seafarer telah berada di garis depan perdagangan internasional, memberikan solusi pengiriman yang inovatif, andal, dan berkelanjutan. Kami percaya pada pembangunan kemitraan jangka panjang melalui transparansi dan keunggulan operasional.
+        </p>
+
+        <ul class="space-y-4 mb-10">
+          {[
+            "Jaringan global yang mencakup 150+ negara",
+            "Visibilitas rantai pasokan ujung ke ujung",
+            "Komitmen pada praktik pengiriman berkelanjutan",
+            "Tim dukungan pelanggan khusus 24/7"
+          ].map(item => (
+            <li class="flex items-start gap-3">
+              <CheckCircle2 class="w-6 h-6 text-emerald-500 flex-shrink-0" />
+              <span class="text-slate-700 font-medium">{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        <a href="#company" class="inline-block bg-navy-900 hover:bg-navy-800 text-white px-8 py-4 rounded-full font-medium transition-colors">
+          Lebih Banyak Tentang Kami
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  
+  document.addEventListener('astro:page-load', () => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#about',
+        start: 'top 75%',
+      }
+    });
+
+    tl.fromTo('.about-images', 
+      { x: -50, opacity: 0 },
+      { x: 0, opacity: 1, duration: 1, ease: 'power3.out' }
+    )
+    .fromTo('.about-content',
+      { x: 50, opacity: 0 },
+      { x: 0, opacity: 1, duration: 1, ease: 'power3.out' },
+      "-=0.8"
+    );
+  });
+</script>

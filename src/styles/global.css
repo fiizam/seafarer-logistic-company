@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", "Inter", sans-serif;
+  --color-navy-900: #1a1b41;
+  --color-navy-800: #292a5d;
+  --color-navy-700: #3c3d7a;
+  --color-electric: #ff5757; /* Changed to a vibrant coral/orange */
+  --color-electric-hover: #ff3b3b;
+  --color-accent: #00d2d3; /* Teal accent */
+  --color-accent-light: #e0f7f7;
+  
+  --shadow-soft: 0 20px 40px -15px rgba(26, 27, 65, 0.08);
+  --shadow-glow: 0 0 40px -10px rgba(255, 87, 87, 0.3);
+}
+
+/* Base styles and Lenis smooth scroll recommended styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 font-sans antialiased overflow-x-hidden selection:bg-electric selection:text-white;
+}
+
+/* Utilities for GSAP / typography */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

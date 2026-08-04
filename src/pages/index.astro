@@ -1,11 +1,52 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero.astro';
+import TrackingWidget from '../components/TrackingWidget';
+import QuoteCalculator from '../components/QuoteCalculator';
+import Sustainability from '../components/Sustainability.astro';
+import AboutUs from '../components/AboutUs.astro';
+import Services from '../components/Services.astro';
+import Stats from '../components/Stats.astro';
+import Process from '../components/Process.astro';
+import Fleet from '../components/Fleet.astro';
+import GlobalNetwork from '../components/GlobalNetwork.astro';
+import WhyChooseUs from '../components/WhyChooseUs.astro';
+import Testimonials from '../components/Testimonials.astro';
+import News from '../components/News.astro';
+import FAQ from '../components/FAQ.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Seafarer Logistics | Global Shipping Solutions">
+  <Navbar client:load />
+  <main>
+    <Hero />
+    
+    <section class="relative z-20 -mt-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto mb-24">
+      <TrackingWidget client:load />
+    </section>
+
+    <AboutUs />
+    <Services />
+    <Stats />
+    <Process />
+    <Fleet />
+    <GlobalNetwork />
+    <WhyChooseUs />
+    <Sustainability />
+    <Testimonials />
+    <News />
+    
+    <section id="quote" class="py-24 bg-slate-50 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <QuoteCalculator client:load />
+      </div>
+    </section>
+
+    <FAQ />
+    <Contact />
+  </main>
+  <Footer />
 </Layout>

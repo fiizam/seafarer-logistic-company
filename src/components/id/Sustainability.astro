@@ -1,0 +1,137 @@
+---
+---
+<section id="sustainability" class="py-32 bg-slate-50 relative overflow-hidden">
+  {/* Abstract Background Elements */}
+  <div class="absolute inset-0 pointer-events-none overflow-hidden">
+    <div class="absolute -top-1/4 -right-1/4 w-96 h-96 lg:w-[800px] lg:h-[800px] bg-gradient-to-br from-emerald-100/40 to-teal-100/10 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-1/4 -left-1/4 w-72 h-72 lg:w-[600px] lg:h-[600px] bg-gradient-to-tr from-blue-100/40 to-cyan-100/10 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      
+      {/* Content Side */}
+      <div class="sustain-content">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 text-emerald-800 font-bold text-sm uppercase tracking-wider mb-8 shadow-sm">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          Logistik Ramah Lingkungan
+        </div>
+        <h2 class="text-4xl lg:text-5xl lg:leading-tight font-extrabold text-navy-900 mb-6">
+          Merancang masa depan <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-500">Net-Zero.</span>
+        </h2>
+        <p class="text-slate-600 text-lg mb-8 leading-relaxed max-w-lg">
+          Kami mendefinisikan ulang pengiriman global dengan mengintegrasikan teknologi berkelanjutan di setiap tingkatan. Mulai dari armada otonom listrik hingga optimalisasi rute berbasis AI, kami menekan emisi tanpa kompromi.
+        </p>
+
+        <div class="flex items-center gap-6">
+          <a href="#" class="inline-flex items-center justify-center bg-navy-900 text-white hover:bg-electric px-8 py-4 rounded-xl font-bold transition-all hover:shadow-lg hover:shadow-electric/30 hover:-translate-y-1">
+            Baca Laporan ESG
+          </a>
+        </div>
+      </div>
+
+      {/* Bento Grid Visuals */}
+      <div class="relative grid grid-cols-2 gap-4 h-[450px] md:h-[600px] sustain-bento">
+        {/* Main Photo Card */}
+        <div class="col-span-2 row-span-2 rounded-3xl overflow-hidden relative group shadow-2xl bento-item">
+          <div class="absolute inset-0 bg-navy-900/40 group-hover:bg-navy-900/20 transition-colors duration-700 z-10"></div>
+          <img src="/images/news-1.png" alt="Eco Ship" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000" />
+          
+          <div class="absolute bottom-6 left-6 z-20 bg-white/90 backdrop-blur-md p-6 rounded-2xl max-w-[80%] border border-white/40 shadow-xl">
+            <h4 class="text-xl font-black text-navy-900 mb-1">Armada Kapal Ramah Lingkungan</h4>
+            <p class="text-sm font-semibold text-slate-500">Didukung oleh bahan bakar laut alternatif</p>
+          </div>
+        </div>
+
+        {/* Metric Card 1: Emisi */}
+        <div class="col-span-1 rounded-3xl bg-navy-900 p-6 flex flex-col justify-between shadow-xl relative overflow-hidden bento-item">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/20 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
+          <div class="text-emerald-400 mb-4">
+            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+          </div>
+          <div>
+            <div class="flex items-baseline gap-1">
+              <span class="text-4xl font-black text-white">-<span class="counter" data-target="30">0</span>%</span>
+            </div>
+            <p class="text-sm font-semibold text-slate-400 mt-1">Pengurangan CO2 by 2030</p>
+          </div>
+        </div>
+
+        {/* Metric Card 2: Circular Ring */}
+        <div class="col-span-1 rounded-3xl bg-white border border-slate-200 p-6 flex flex-col items-center justify-center shadow-xl bento-item">
+          <div class="relative w-24 h-24 mb-4">
+            {/* Background ring */}
+            <svg class="w-full h-full transform -rotate-90">
+              <circle cx="48" cy="48" r="40" stroke="currentColor" stroke-width="8" fill="transparent" class="text-slate-100" />
+              {/* Progress ring */}
+              <circle cx="48" cy="48" r="40" stroke="currentColor" stroke-width="8" fill="transparent" stroke-dasharray="251.2" stroke-dashoffset="251.2" class="text-emerald-500 progress-ring transition-all duration-1000 ease-out" />
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center flex-col">
+              <span class="text-2xl font-black text-navy-900"><span class="counter" data-target="100">0</span>%</span>
+            </div>
+          </div>
+          <p class="text-sm font-bold text-slate-500 text-center uppercase tracking-wide">Bahan Dapat<br/>Didaur Ulang</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  
+  document.addEventListener('astro:page-load', () => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Animate text content
+    gsap.fromTo('.sustain-content > *',
+      { y: 40, opacity: 0 },
+      { 
+        y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: 'power4.out',
+        scrollTrigger: {
+          trigger: '#sustainability',
+          start: 'top 75%',
+        }
+      }
+    );
+
+    // Bento box staggered entrance
+    gsap.fromTo('.bento-item',
+      { y: 60, opacity: 0, scale: 0.95 },
+      { 
+        y: 0, opacity: 1, scale: 1, duration: 1.2, stagger: 0.2, ease: 'expo.out',
+        scrollTrigger: {
+          trigger: '.sustain-bento',
+          start: 'top 80%',
+          onEnter: () => {
+            // Animate SVG Ring
+            const ring = document.querySelector('.progress-ring') as SVGCircleElement;
+            if (ring) {
+              const radius = ring.r.baseVal.value;
+              const circumference = radius * 2 * Math.PI;
+              // Target is 100%, so offset is 0
+              setTimeout(() => {
+                ring.style.strokeDashoffset = '0';
+              }, 500);
+            }
+
+            // Animate Counters
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+              const target = parseInt(counter.getAttribute('data-target') || '0');
+              gsap.to(counter, {
+                innerHTML: target,
+                duration: 2,
+                snap: { innerHTML: 1 },
+                ease: 'power3.out',
+                delay: 0.5
+              });
+            });
+          }
+        }
+      }
+    );
+  });
+</script>

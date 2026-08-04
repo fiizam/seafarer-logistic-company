@@ -1,0 +1,88 @@
+---
+import pkg from 'lucide-react';
+const { Anchor, Box, Users, Clock } = pkg;
+---
+
+<section id="stats" class="py-20 bg-navy-800 text-white relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 divide-x divide-white/10">
+      
+      <div class="text-center px-4 stat-item">
+        <div class="w-12 h-12 mx-auto bg-electric/20 text-electric rounded-xl flex items-center justify-center mb-4">
+          <Anchor class="w-6 h-6" />
+        </div>
+        <div class="text-4xl lg:text-5xl font-bold mb-2 counter" data-target="245">0</div>
+        <div class="text-slate-400 text-sm font-medium uppercase tracking-wider">Kapal Aktif</div>
+      </div>
+
+      <div class="text-center px-4 stat-item">
+        <div class="w-12 h-12 mx-auto bg-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center mb-4">
+          <Box class="w-6 h-6" />
+        </div>
+        <div class="text-4xl lg:text-5xl font-bold mb-2 counter" data-target="15000" data-suffix="+">0</div>
+        <div class="text-slate-400 text-sm font-medium uppercase tracking-wider">TEU Harian</div>
+      </div>
+
+      <div class="text-center px-4 stat-item">
+        <div class="w-12 h-12 mx-auto bg-amber-500/20 text-amber-400 rounded-xl flex items-center justify-center mb-4">
+          <Users class="w-6 h-6" />
+        </div>
+        <div class="text-4xl lg:text-5xl font-bold mb-2 counter" data-target="98" data-suffix="%">0</div>
+        <div class="text-slate-400 text-sm font-medium uppercase tracking-wider">Retensi Klien</div>
+      </div>
+
+      <div class="text-center px-4 stat-item">
+        <div class="w-12 h-12 mx-auto bg-purple-500/20 text-purple-400 rounded-xl flex items-center justify-center mb-4">
+          <Clock class="w-6 h-6" />
+        </div>
+        <div class="text-4xl lg:text-5xl font-bold mb-2 counter" data-target="24" data-suffix="/7">0</div>
+        <div class="text-slate-400 text-sm font-medium uppercase tracking-wider">Dukungan Global</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  
+  document.addEventListener('astro:page-load', () => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    const counters = document.querySelectorAll('.counter');
+    
+    counters.forEach(counter => {
+      const target = +(counter.getAttribute('data-target') || 0);
+      const suffix = counter.getAttribute('data-suffix') || '';
+      
+      ScrollTrigger.create({
+        trigger: counter,
+        start: 'top 85%',
+        once: true,
+        onEnter: () => {
+          gsap.to(counter, {
+            innerHTML: target,
+            duration: 2,
+            ease: "power2.out",
+            snap: { innerHTML: 1 },
+            onUpdate: function() {
+              counter.innerHTML = Math.round(this.targets()[0].innerHTML) + suffix;
+            }
+          });
+        }
+      });
+    });
+
+    gsap.fromTo('.stat-item',
+      { y: 30, opacity: 0 },
+      { 
+        y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '#stats',
+          start: 'top 80%',
+        }
+      }
+    );
+  });
+</script>

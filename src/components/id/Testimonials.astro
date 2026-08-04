@@ -1,0 +1,98 @@
+---
+import pkg from 'lucide-react';
+const { Quote, Star } = pkg;
+
+const testimonials = [
+  {
+    name: "Sarah Jenkins",
+    role: "Supply Chain Director",
+    company: "Global Retail Co.",
+    content: "Seafarer telah sepenuhnya mengubah efisiensi rantai pasokan kami. Pelacakan waktu nyata dan manajemen akun khusus mereka telah mengurangi penundaan kami hingga lebih dari 40%.",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop"
+  },
+  {
+    name: "Michael Chen",
+    role: "Operations Manager",
+    company: "TechManufacture Inc.",
+    content: "Ketika kami perlu memindahkan peralatan elektronik sensitif melintasi dunia, solusi kargo aman Seafarer memberikan keandalan dan ketenangan pikiran yang tepat.",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop"
+  },
+  {
+    name: "Elena Rodriguez",
+    role: "CEO",
+    company: "FreshFoods Export",
+    content: "Logistik pengontrol suhu mereka tak tertandingi. Produk kami selalu tiba segar dan tepat waktu, yang sangat penting untuk reputasi bisnis kami.",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop"
+  }
+];
+---
+
+<section id="testimonials" class="py-24 bg-white relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16 testimonial-header">
+      <h4 class="text-electric font-semibold tracking-wider uppercase text-sm mb-3">Kisah Sukses Klien</h4>
+      <h2 class="text-4xl lg:text-5xl font-bold text-navy-900 mb-6">
+        Dipercaya oleh pemimpin industri
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {testimonials.map((testimonial, i) => (
+        <div class="testimonial-card bg-slate-50 p-8 rounded-3xl border border-slate-100 hover:shadow-lg transition-shadow relative">
+          <Quote class="absolute top-8 right-8 w-10 h-10 text-slate-200" />
+          
+          <div class="flex gap-1 mb-6 text-amber-400">
+            <Star class="w-5 h-5 fill-current" />
+            <Star class="w-5 h-5 fill-current" />
+            <Star class="w-5 h-5 fill-current" />
+            <Star class="w-5 h-5 fill-current" />
+            <Star class="w-5 h-5 fill-current" />
+          </div>
+          
+          <p class="text-slate-600 mb-8 leading-relaxed italic relative z-10">
+            "{testimonial.content}"
+          </p>
+          
+          <div class="flex items-center gap-4">
+            <img src={testimonial.image} alt={testimonial.name} class="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm" />
+            <div>
+              <h4 class="font-bold text-navy-900">{testimonial.name}</h4>
+              <p class="text-sm text-slate-500">{testimonial.role}, {testimonial.company}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  
+  document.addEventListener('astro:page-load', () => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    gsap.fromTo('.testimonial-header', 
+      { y: 30, opacity: 0 },
+      { 
+        y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '#testimonials',
+          start: 'top 80%',
+        }
+      }
+    );
+
+    gsap.fromTo('.testimonial-card',
+      { y: 50, opacity: 0 },
+      { 
+        y: 0, opacity: 1, duration: 0.6, stagger: 0.2, ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.testimonial-card',
+          start: 'top 80%',
+        }
+      }
+    );
+  });
+</script>

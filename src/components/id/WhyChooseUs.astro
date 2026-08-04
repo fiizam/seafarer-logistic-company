@@ -1,0 +1,106 @@
+---
+import pkg from 'lucide-react';
+const { ShieldCheck, Zap, Globe, HeartHandshake } = pkg;
+
+const features = [
+  {
+    icon: ShieldCheck,
+    title: "Keamanan Tak Tertandingi",
+    description: "Protokol tingkat militer dan pemantauan 24/7 memastikan kargo Anda selalu aman."
+  },
+  {
+    icon: Zap,
+    title: "Sekilat Cahaya",
+    description: "Perutean yang dioptimalkan dan penanganan prioritas untuk mengalahkan rata-rata waktu transit industri."
+  },
+  {
+    icon: Globe,
+    title: "Jangkauan Global",
+    description: "Akses langsung ke lebih dari 150 negara dengan keahlian lokal di setiap pelabuhan utama."
+  },
+  {
+    icon: HeartHandshake,
+    title: "Dukungan Khusus",
+    description: "Manajer akun pribadi yang ditugaskan ke bisnis Anda untuk komunikasi yang lancar."
+  }
+];
+---
+
+<section id="why-us" class="py-24 bg-white relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      
+      <div class="why-content">
+        <h4 class="text-electric font-semibold tracking-wider uppercase text-sm mb-3">Mengapa Memilih Kami</h4>
+        <h2 class="text-4xl lg:text-5xl font-bold text-navy-900 mb-6">
+          Pilihan cerdas untuk logistik global.
+        </h2>
+        <p class="text-slate-600 mb-10 text-lg">
+          Kami tidak hanya memindahkan kargo; kami memberikan janji. Komitmen kami terhadap keunggulan, inovasi teknologi, dan kepuasan pelanggan membedakan kami dalam industri yang kompetitif.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-8">
+          {features.map(feature => {
+            const Icon = feature.icon;
+            return (
+              <div class="flex flex-col gap-3">
+                <div class="w-12 h-12 rounded-lg bg-electric/10 text-electric flex items-center justify-center mb-2">
+                  <Icon class="w-6 h-6" />
+                </div>
+                <h3 class="font-bold text-navy-900 text-lg">{feature.title}</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">{feature.description}</p>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+
+      <div class="relative h-72 md:h-96 lg:h-[600px] why-image">
+        <div class="absolute inset-0 bg-gradient-to-tr from-electric/20 to-transparent rounded-3xl -z-10 transform translate-x-4 translate-y-4"></div>
+        <img 
+          src="/images/why-us.png" 
+          alt="Logistics Excellence" 
+          class="w-full h-full object-cover rounded-3xl shadow-2xl"
+        />
+        
+        {/* Floating Badge */}
+        <div class="absolute -bottom-8 -left-8 bg-white p-6 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-4">
+          <div class="w-14 h-14 bg-emerald-500/10 text-emerald-500 rounded-full flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-leaf"><path d="M11 20A7 7 0 0 1 14 6c7 0 7 7 7 7a7 7 0 0 1-7 7c-7 0-7-7-7-7"/><path d="M14 6v6a3 3 0 0 1-3 3h-3"/><path d="M4 14a6 6 0 0 1 6-6"/></svg>
+          </div>
+          <div>
+            <div class="font-bold text-navy-900 text-lg">Ramah Lingkungan</div>
+            <div class="text-sm text-slate-500">Sertifikasi ISO 14001</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  
+  document.addEventListener('astro:page-load', () => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#why-us',
+        start: 'top 75%',
+      }
+    });
+
+    tl.fromTo('.why-content', 
+      { x: -50, opacity: 0 },
+      { x: 0, opacity: 1, duration: 1, ease: 'power3.out' }
+    )
+    .fromTo('.why-image',
+      { x: 50, opacity: 0 },
+      { x: 0, opacity: 1, duration: 1, ease: 'power3.out' },
+      "-=0.8"
+    );
+  });
+</script>

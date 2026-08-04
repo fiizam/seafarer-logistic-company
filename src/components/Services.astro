@@ -1,0 +1,115 @@
+---
+import pkg from 'lucide-react';
+const { Ship, Plane, Truck, PackageCheck, Box, FileText } = pkg;
+
+const services = [
+  {
+    icon: Ship,
+    title: "Ocean Freight",
+    description: "Cost-effective shipping for large volumes with FCL and LCL options across all major global trade lanes.",
+    color: "text-blue-500",
+    bg: "bg-blue-500/10"
+  },
+  {
+    icon: Plane,
+    title: "Air Freight",
+    description: "Time-critical delivery solutions ensuring your cargo reaches its destination with maximum speed and security.",
+    color: "text-sky-500",
+    bg: "bg-sky-500/10"
+  },
+  {
+    icon: Truck,
+    title: "Land Transportation",
+    description: "Seamless inland connectivity via road and rail networks, providing true door-to-door delivery.",
+    color: "text-emerald-500",
+    bg: "bg-emerald-500/10"
+  },
+  {
+    icon: PackageCheck,
+    title: "Project Cargo",
+    description: "Specialized handling for oversized, heavy, and high-value cargo requiring custom engineering and routing.",
+    color: "text-amber-500",
+    bg: "bg-amber-500/10"
+  },
+  {
+    icon: Box,
+    title: "Warehousing",
+    description: "Secure, strategically located facilities offering inventory management and distribution services.",
+    color: "text-indigo-500",
+    bg: "bg-indigo-500/10"
+  },
+  {
+    icon: FileText,
+    title: "Customs Brokerage",
+    description: "Expert navigation of international customs regulations to ensure smooth clearance and compliance.",
+    color: "text-rose-500",
+    bg: "bg-rose-500/10"
+  }
+];
+---
+
+<section id="services" class="py-24 bg-slate-50 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-16 service-header">
+      <h4 class="text-electric font-semibold tracking-wider uppercase text-sm mb-3">Our Services</h4>
+      <h2 class="text-4xl lg:text-5xl font-bold text-navy-900 mb-6">
+        Comprehensive Logistics Solutions
+      </h2>
+      <p class="text-slate-600 text-lg">
+        We offer a complete suite of supply chain services designed to meet the unique demands of your business, from factory floor to final destination.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {services.map((service, index) => {
+        const Icon = service.icon;
+        return (
+          <div class="service-card group bg-white p-8 rounded-[2rem] shadow-soft hover:shadow-xl border-2 border-slate-50 transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
+            <div class={`absolute top-0 right-0 w-32 h-32 ${service.bg} blur-3xl opacity-50 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500`}></div>
+            <div class={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 ${service.bg} ${service.color} transition-colors group-hover:bg-electric group-hover:text-white relative z-10`}>
+              <Icon class="w-8 h-8" />
+            </div>
+            <h3 class="text-2xl font-bold text-navy-900 mb-3 group-hover:text-electric transition-colors relative z-10">{service.title}</h3>
+            <p class="text-slate-600 leading-relaxed font-medium relative z-10">
+              {service.description}
+            </p>
+            <div class="mt-6 flex items-center text-sm font-bold text-electric opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all relative z-10">
+              Learn more <span class="ml-1">→</span>
+            </div>
+          </div>
+        )
+      })}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  
+  document.addEventListener('astro:page-load', () => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    gsap.fromTo('.service-header', 
+      { y: 30, opacity: 0 },
+      { 
+        y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '#services',
+          start: 'top 80%',
+        }
+      }
+    );
+
+    gsap.fromTo('.service-card',
+      { y: 50, opacity: 0 },
+      { 
+        y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.service-card',
+          start: 'top 85%',
+        }
+      }
+    );
+  });
+</script>

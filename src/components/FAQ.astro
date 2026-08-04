@@ -1,0 +1,124 @@
+---
+import pkg from 'lucide-react';
+const { ChevronDown } = pkg;
+
+const faqs = [
+  {
+    question: "How do I request a shipping quote?",
+    answer: "You can request a quote by filling out the contact form on this website, calling our 24/7 support line, or emailing our sales team. We typically respond with a detailed quotation within 4 hours."
+  },
+  {
+    question: "What types of cargo do you handle?",
+    answer: "We handle a wide variety of cargo including standard containers (FCL/LCL), temperature-controlled goods, oversized machinery, hazardous materials, and high-value items. We have specialized equipment for almost any shipping need."
+  },
+  {
+    question: "Do you offer cargo insurance?",
+    answer: "Yes, we offer comprehensive cargo insurance policies to protect your goods against loss or damage during transit. Our team can help you select the right coverage level based on your cargo's value and destination."
+  },
+  {
+    question: "How can I track my shipment?",
+    answer: "Once your shipment is booked, you will receive a unique tracking number and access to our secure client portal, where you can monitor your cargo's status and location in real-time."
+  },
+  {
+    question: "What is your policy on sustainability?",
+    answer: "Seafarer is committed to reducing our carbon footprint. We are actively upgrading our fleet with fuel-efficient vessels, optimizing trade routes, and participating in global initiatives to achieve zero-emission shipping by 2050."
+  }
+];
+---
+
+<section id="faq" class="py-24 bg-slate-50 relative">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16 faq-header">
+      <h4 class="text-electric font-semibold tracking-wider uppercase text-sm mb-3">Common Questions</h4>
+      <h2 class="text-3xl lg:text-4xl font-bold text-navy-900">
+        Frequently Asked Questions
+      </h2>
+    </div>
+
+    <div class="space-y-4">
+      {faqs.map((faq, i) => (
+        <div class="faq-item bg-white border border-slate-200 rounded-2xl overflow-hidden group">
+          <button class="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none faq-trigger">
+            <span class="font-bold text-navy-900 group-hover:text-electric transition-colors pr-8">
+              {faq.question}
+            </span>
+            <div class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center flex-shrink-0 group-hover:bg-electric/10 transition-colors icon-wrapper">
+              <ChevronDown class="w-5 h-5 text-slate-400 group-hover:text-electric transition-transform duration-300 transform" />
+            </div>
+          </button>
+          <div class="faq-content overflow-hidden h-0 opacity-0 px-6">
+            <p class="text-slate-600 pb-5 pt-2 leading-relaxed">
+              {faq.answer}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  
+  document.addEventListener('astro:page-load', () => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    gsap.fromTo('.faq-header', 
+      { y: 30, opacity: 0 },
+      { 
+        y: 0, opacity: 1, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '#faq',
+          start: 'top 80%',
+        }
+      }
+    );
+
+    gsap.fromTo('.faq-item',
+      { y: 30, opacity: 0 },
+      { 
+        y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.faq-item',
+          start: 'top 85%',
+        }
+      }
+    );
+
+    // Accordion Logic
+    const triggers = document.querySelectorAll('.faq-trigger');
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const content = trigger.nextElementSibling as HTMLElement;
+        const icon = trigger.querySelector('.icon-wrapper svg') as HTMLElement;
+        const isOpen = content.classList.contains('open');
+
+        // Close all other accordions (optional)
+        document.querySelectorAll('.faq-content.open').forEach(el => {
+          if (el !== content) {
+            gsap.to(el, { height: 0, opacity: 0, duration: 0.3, ease: 'power2.inOut' });
+            el.classList.remove('open');
+            const siblingIcon = el.previousElementSibling?.querySelector('.icon-wrapper svg');
+            if(siblingIcon) gsap.to(siblingIcon, { rotate: 0, duration: 0.3 });
+          }
+        });
+
+        if (isOpen) {
+          gsap.to(content, { height: 0, opacity: 0, duration: 0.3, ease: 'power2.inOut' });
+          gsap.to(icon, { rotate: 0, duration: 0.3 });
+          content.classList.remove('open');
+        } else {
+          // Temporarily set height to auto to measure true height
+          gsap.set(content, { height: 'auto' });
+          const targetHeight = content.offsetHeight;
+          gsap.set(content, { height: 0 }); // reset
+          
+          gsap.to(content, { height: targetHeight, opacity: 1, duration: 0.4, ease: 'power2.inOut' });
+          gsap.to(icon, { rotate: 180, duration: 0.3 });
+          content.classList.add('open');
+        }
+      });
+    });
+  });
+</script>
